@@ -4,10 +4,11 @@ $color-body: #262626;
 $color-dark: #333;
 $color-white: #fff;
 $color-primary: #0057ff;
-
+$color-gray: #808080;
 // font-size
 
 $font-nav: 18px;
+$font-body-1: 18px;
 
 // border radiusss
 
@@ -15,4 +16,18 @@ $border-radius-base: 5px;
 
 // transition
 
-$header-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+
+// opacity
+
+$opacity-text: 0.9;
+
+// gutter
+
+$bs-gutter-x: 1.5rem;
+$bs-gutter-y: 0;
+
+// space 
+
+$section-space: 50px;

@@ -1,0 +1,114 @@
+.footer {
+    padding: 50px 0;
+    background: $color-dark;
+    color: #fff;
+}
+
+.footer__link-icon li {
+    display: flex;
+}
+
+.footer__contact ul li {
+    margin-bottom: 15px;
+    font-weight: 300;
+    text-align: justify;
+    & span {
+        opacity: $opacity-text;
+        font-size: 14px;
+    }
+}
+
+.footer__link-item-icon {
+    flex-shrink: 0;
+    margin-right: 15px;
+    transform: translateY(-3px);
+    width: 24px;
+}
+
+.footer__contact ul li strong {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.footer__link {
+    & li {
+        margin-bottom: 7px;
+        & a {
+            color: #fff;
+            opacity: $opacity-text;
+            font-size: 15px;
+            transition: all ease 0.3s;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.footer__bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    margin-top: 30px;
+    font-weight: 300;
+    font-size: 12px;
+    opacity: $opacity-text;
+    border-top: 1px solid #565666;
+}
+
+@media (max-width: 767px) {
+    .footer__logo {
+        width: 150px;
+        margin: 0 auto 30px;
+    }
+
+    .logo-footer__mobile {
+        & img {
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    .footer__collapse {
+        border-top: 1px solid #565666;
+        &-title {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            &::after {
+                content: '+';
+                display: inline-block;
+            }
+        }
+
+        & .footer__collapse-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: $transition;
+        }
+    }
+
+    .footer__link li {
+        line-height: 2;
+    }
+
+    .footer__collapse.active .footer__collapse-content {
+        max-height: 1000px;
+    }
+
+    .footer__collapse.active .footer__collaps-title::after {
+        content: "-";
+    }
+
+    .footer__bottom-inner {
+        display: grid;
+        grid-gap: 15px;
+        gap: 15px;
+        text-align: center;
+    }
+}
+

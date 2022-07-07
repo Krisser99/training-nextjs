@@ -1,4 +1,4 @@
-import { faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -18,20 +18,30 @@ const MenuItem = ({ menu }: Props) => {
             setIsMobile(width <= 1023);
         };
 
+        handleResize();
+
         window.addEventListener('resize', handleResize);
 
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    console.log(isMobile)
+
     const renderChildren = () => {
+        const delayAnimation = -300;
         if (menu.children) {
             return (
                 <ul>
-                    {menu.children.map((item) => {
+                    {menu.children.map((item, index) => {
                         return (
-                            <li key={item.id}>
+                            <li
+                                key={item.id}
+                                style={{
+                                    animationDelay: `${
+                                        delayAnimation + 150 * index++
+                                    }ms`,
+                                }}
+                            >
                                 <Link href={item.href}>
                                     <a>{item.title}</a>
                                 </Link>
@@ -44,15 +54,22 @@ const MenuItem = ({ menu }: Props) => {
     };
 
     return (
-        <li>
+        <li className={`${isMobile && open && 'actives-li__mobiles'}`}>
             <Link href={menu.href}>
                 <a>{menu.title}</a>
             </Link>
             {menu.children && (
-                <FontAwesomeIcon
-                    className="h-3 w-3 ml-2 inline-block cursor-pointer"
-                    icon={faChevronDown}
-                />
+                <i
+                    className={`flex justify-center items-center ${
+                        isMobile && open && 'active'
+                    }`}
+                    onClick={() => setOpen(!open)}
+                >
+                    <FontAwesomeIcon
+                        className="h-3 w-3 lg:ml-2 inline-block cursor-pointer"
+                        icon={faChevronDown}
+                    />
+                </i>
             )}
             {renderChildren()}
         </li>

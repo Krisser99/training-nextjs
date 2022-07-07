@@ -1,0 +1,35 @@
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    &__item {
+        display: inline-flex;
+        height: 35px;
+        width: 35px;
+        line-height: 35px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-right: 3px;
+        border-radius: $border-radius-base;
+        font-weight: 500;
+        font-size: $font-body-1;
+        color: $color-dark;
+        &:hover {
+            background: #eee;
+        }
+        &.active {
+            background: $color-primary;
+            color: #fff;
+            cursor: auto;
+            pointer-events: none;
+        }
+    }
+    &__arrow {
+        & img {
+            height: 24px;
+            width: 24px;
+            color: $color-dark;
+        }
+    }
+}

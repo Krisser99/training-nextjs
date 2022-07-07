@@ -1,13 +1,13 @@
-import { GetStaticProps } from 'next';
-import Link from 'next/link';
 
 type Props = {
     posts: any[];
 };
 
 const AboutPage = ({ posts }: Props) => {
-    return <div></div>;
-};
+    console.log(posts)
+    return <div>
+        <h1>ABOUT</h1>
+    </div>;
+}
 
 export default AboutPage;
-	

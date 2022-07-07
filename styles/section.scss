@@ -1,0 +1,12 @@
+.section {
+    padding: $section-space 0;
+    & h2 {
+        color: $color-dark;
+        font-weight: 700;
+        margin-bottom: 15px;
+        font-size: 60px;
+    }
+    & p {
+        font-size: $font-body-1;
+    }
+}
