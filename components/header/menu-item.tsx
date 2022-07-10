@@ -1,6 +1,7 @@
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { IMenu } from '../../constants';
 interface Props {
@@ -10,7 +11,8 @@ interface Props {
 const MenuItem = ({ menu }: Props) => {
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
-
+    const router = useRouter();
+    
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
@@ -56,7 +58,9 @@ const MenuItem = ({ menu }: Props) => {
     return (
         <li className={`${isMobile && open && 'actives-li__mobiles'}`}>
             <Link href={menu.href}>
-                <a>{menu.title}</a>
+                <a className={router.pathname === menu.href ? 'active' : ''}>
+                    {menu.title}
+                </a>
             </Link>
             {menu.children && (
                 <i

@@ -1,17 +1,18 @@
-import { getCategories, getPostsData } from 'api';
+import { getCategories, getPostsCategory, getPostsData } from 'api';
 import { CategoryBlog, Filter, Pagination } from 'components';
 import { BlogList } from 'components/blog';
 import { DefaultLayout } from 'components/layout';
 import { usePostContext } from 'context';
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 interface Props {
     posts: any[];
     page: string;
     categories: any[];
+    name: string;
 }
 
-const Blog = ({ posts, page, categories }: Props) => {
+const Blog = ({ posts, page, categories, name }: Props) => {
     const { dataSearch } = usePostContext();
     
     return (
@@ -24,17 +25,8 @@ const Blog = ({ posts, page, categories }: Props) => {
                                 <div className="text-center lg:text-left lg:basis-1/2 px-3">
                                     <div>
                                         <h2 className="section__heading">
-                                            Blog
+                                            {name}
                                         </h2>
-                                        <p>
-                                            Chúng tôi muốn chia sẻ cái nhìn sâu
-                                            sắc và kinh nghiệm của mình để giúp
-                                            bạn tìm hiểu thêm về các chuyển đổi
-                                            kỹ thuật số tuyệt vời. Để có thông
-                                            tin, ý tưởng và thông điệp mạnh mẽ,
-                                            hãy đọc các bài đăng trên blog của
-                                            chúng tôi.
-                                        </p>
                                     </div>
                                 </div>
                                 <div>
@@ -59,20 +51,37 @@ const Blog = ({ posts, page, categories }: Props) => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-    const page = ctx.params?.page || 1;
-
-    const posts = await getPostsData(+page);
+export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+    const page = params?.page || 1;
 
     const categories = await getCategories();
+
+    const categoryId = categories.find(
+        (item: any) => item.slug === params.slug
+    );
+
+    const posts = await getPostsCategory(categoryId.id);
 
     return {
         props: {
             posts,
             page,
             categories,
+            name: categoryId.name,
         },
     };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const categories = await getCategories();
+
+    const paths = categories.map((item: any) => {
+        return {
+            params: { slug: item.slug },
+        };
+    });
+
+    return { paths, fallback: 'blocking' };
 };
 
 export default Blog;

@@ -34,7 +34,13 @@ a {
     text-decoration: none;
 }
 
-
 .container-base {
-    @apply container xl:max-w-[1230px] mx-auto px-3
+    @apply container xl:max-w-[1230px] mx-auto px-3;
+}
+
+@media (max-width: 767px) {
+    .container-base {
+        padding: 0 30px;
+        max-width: 540px;
+    }
 }

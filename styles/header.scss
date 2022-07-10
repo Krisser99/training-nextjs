@@ -90,7 +90,8 @@
     }
 
     .menu-desktop > ul > li > a:focus,
-    .menu-desktop > ul > li > a:hover {
+    .menu-desktop > ul > li > a:hover,
+    .menu-desktop > ul > li > a.active {
         color: $color-primary;
     }
 
@@ -239,7 +240,7 @@
             background: $color-dark;
             display: block;
             transition: $transition;
-            scrollbar-face-color: #05843e;
+            scrollbar-face-color: $color-primary;
             scrollbar-track-color: #fff;
 
             &::-webkit-scrollbar {
@@ -279,7 +280,7 @@
                 }
 
                 &::-webkit-scrollbar-thumb {
-                    background-color: #05843e;
+                    background-color: $color-primary;
                     -webkit-transition: $transition;
                     transition: $transition;
                 }

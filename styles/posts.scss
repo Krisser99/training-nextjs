@@ -1,3 +1,84 @@
+.category-nav {
+    margin: 40px 0;
+    white-space: nowrap;
+    overflow-x: auto;
+    & li:not(:last-child) {
+        margin-right: 30px;
+    }
+    & li {
+        & a {
+            display: inline-block;
+            color: $color-body;
+            font-size: $font-body-1;
+            padding: 10px 0;
+            position: relative;
+
+            &:hover {
+                color: $color-primary;
+                &:after {
+                    width: 100%;
+                }
+            }
+            &::after {
+                content: '';
+                height: 2px;
+                width: 0;
+                display: inline-block;
+                background: $color-primary;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                transition: $transition;
+            }
+        }
+        & .active {
+            color: $color-primary;
+            &:after {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.blog-form {
+    border: 1px solid #f3f3f3;
+    background: #fff;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 24px 48px -15px rgb(153 161 170 / 25%);
+    & input {
+        padding: 20px 15px;
+        width: 100%;
+        background: 0 0;
+        border: none;
+        outline: none;
+        flex: 1;
+    }
+    &__btn {
+        margin: 10px;
+        padding: 10px 30px;
+        border-radius: 10px;
+        border: none;
+        background: $color-primary;
+        cursor: pointer;
+        color: #fff;
+    }
+    &__remove-text {
+        cursor: pointer;
+        flex-shrink: 0;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        color: #fb4545;
+    }
+
+    & form {
+        margin: 5px 0;
+    }
+}
+
 .card-post {
     background: #fff;
     border-radius: $border-radius-base;
@@ -28,5 +109,43 @@
             color: $color-dark;
             font-size: $font-body-1;
         }
+    }
+}
+
+.post-content {
+    font-size: $font-body-2;
+    & p {
+        margin-bottom: 20px;
+        font-size: $font-body-2;
+    }
+    & img {
+        display: inline-block;
+        max-width: 100%;
+        object-fit: cover;
+        height: auto;
+        margin: auto;
+    }
+    & a {
+        color: $color-primary;
+    }
+    & ul {
+        padding-left: 30px;
+        font-size: $font-body-2;
+        & li {
+            margin-bottom: 10px;
+            list-style: disc;
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .blog-heading h2 {
+        font-size: 48px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .blog-heading h2 {
+        font-size: 36px;
     }
 }

@@ -7,9 +7,18 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { MouseEvent, useState } from 'react';
 
 const Footer = () => {
-    
+    const [active, setActive] = useState<string>('');
+    const handleToggle = (e: any) => {
+        if (e.target.id === active) {
+            setActive('');
+        } else {
+            setActive(e.target.id);
+        }
+    };
+
     return (
         <div className="footer">
             <div className="footer-top">
@@ -27,8 +36,16 @@ const Footer = () => {
                     </div>
                     <div className="grid grid-cols-12 md:gap-6">
                         <div className="col-span-12 lg:col-span-5 footer__contact">
-                            <div className="footer__collapse">
-                                <div className="footer__collapse-title md:mb-4">
+                            <div
+                                onClick={handleToggle}
+                                className={`footer__collapse ${
+                                    active === 'address' && 'active'
+                                }`}
+                            >
+                                <div
+                                    id="address"
+                                    className="footer__collapse-title md:mb-4"
+                                >
                                     Địa chỉ
                                 </div>
                                 <div className="footer__collapse-content">
@@ -136,8 +153,17 @@ const Footer = () => {
                             <div className="grid grid-cols-12 md:gap-6">
                                 <div className="col-span-12 md:col-span-9">
                                     <div className="grid grid-cols-12 md:gap-6">
-                                        <div className="footer__collapse col-span-12 md:col-span-6">
-                                            <div className="footer__collapse-title md:mb-4">
+                                        <div
+                                            onClick={handleToggle}
+                                            className={`footer__collapse col-span-12 md:col-span-6 ${
+                                                active === 'industries' &&
+                                                'active'
+                                            }`}
+                                        >
+                                            <div
+                                                id="industries"
+                                                className="footer__collapse-title md:mb-4"
+                                            >
                                                 Các ngành
                                             </div>
                                             <div className="footer__collapse-content">
@@ -205,8 +231,17 @@ const Footer = () => {
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div className="footer__collapse col-span-12 md:col-span-6">
-                                            <div className="footer__collapse-title md:mb-4">
+                                        <div
+                                            onClick={handleToggle}
+                                            className={`footer__collapse col-span-12 md:col-span-6 ${
+                                                active === 'services' &&
+                                                'active'
+                                            }`}
+                                        >
+                                            <div
+                                                id="services"
+                                                className="footer__collapse-title md:mb-4"
+                                            >
                                                 Dịch vụ
                                             </div>
                                             <div className="footer__collapse-content">
@@ -282,8 +317,16 @@ const Footer = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="footer__collapse col-span-12 md:col-span-3">
-                                    <div className="footer__collapse-title md:mb-4">
+                                <div
+                                    onClick={handleToggle}
+                                    className={`footer__collapse col-span-12 md:col-span-3 ${
+                                        active === 'resources' && 'active'
+                                    }`}
+                                >
+                                    <div
+                                        id="resources"
+                                        className="footer__collapse-title md:mb-4"
+                                    >
                                         Tài nguyên
                                     </div>
                                     <div className="footer__collapse-content">
@@ -331,8 +374,16 @@ const Footer = () => {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="footer__collapse col-span-12 md:col-start-10 md:col-end-12">
-                                    <div className="footer__collapse-title md:mb-4">
+                                <div
+                                    onClick={handleToggle}
+                                    className={`footer__collapse col-span-12 md:col-start-10 md:col-end-12 ${
+                                        active === 'link' && 'active'
+                                    }`}
+                                >
+                                    <div
+                                        id="link"
+                                        className="footer__collapse-title md:mb-4"
+                                    >
                                         Liên kết
                                     </div>
                                     <div className="footer__collapse-content">
