@@ -19,7 +19,7 @@ const Pagination = ({ page, posts }: Props) => {
     return (
         <div className="pagination">
             {pages?.map((numPage: number) => (
-                <Link href={`/blog/page/${numPage}`}>
+                <Link key={numPage} href={`/blog/page/${numPage}`}>
                     <a
                         className={`pagination__item pagination__arrow ${
                             page === numPage && 'active'
